@@ -32,6 +32,7 @@ public class Modelo {
 	public int envPRI;
 	public int envJSF;
 	int timerDeEjecucionRR;
+        int prueba;
 	public int timerDeEjecucionProcesado;
 	int quantumRR;
 	ArrayList<Integer> gantt;
@@ -87,6 +88,13 @@ public class Modelo {
 											.mostrarPrimerElemento().quantum != 0) {
 								CPU.Ejecutar(MULTY.mostrarPrimerElemento()
 										.mostrarPrimerElemento());
+                                                                
+                                                                if((int)(Math.random()*53+1)%23==0){
+                                                                    BloquearProceso();
+                                                                }
+                                                                 if((int)(Math.random()*54+1)%13==0){
+                                                                    desbloquearProceso();
+                                                                }
 								/*
 								 * JOptionPane.showMessageDialog(null,"Proceso"+
 								 * MULTY
@@ -190,18 +198,25 @@ public class Modelo {
                                     
                                        
 					MULTY.mostrarPrimerElemento().mostrarPrimerElemento().tfinal = timerDeEjecucionProcesado-1;
-                                         if(MULTY.mostrarPrimerElemento().getPrioridad()>=2){
+                                        prueba=MULTY.mostrarPrimerElemento().mostrarPrimerElemento().tfinal;
+                                        if(MULTY.mostrarPrimerElemento().getPrioridad()>=2){
+                                             
                                             MULTY.mostrarPrimerElemento().mostrarPrimerElemento().tfinal--;
+                                             MULTY.mostrarPrimerElemento().mostrarPrimerElemento().rafagaOrg = MULTY.mostrarPrimerElemento().mostrarPrimerElemento().quantum*MULTY.mostrarPrimerElemento().mostrarPrimerElemento().contador+MULTY.mostrarPrimerElemento().mostrarPrimerElemento().rafagaOrg;
                                         }
-                                         
+                                        if(MULTY.mostrarPrimerElemento().getPrioridad()>=3){
+                                            MULTY.mostrarPrimerElemento().mostrarPrimerElemento().tfinal--;
+                                             MULTY.mostrarPrimerElemento().mostrarPrimerElemento().rafagaOrg = MULTY.mostrarPrimerElemento().mostrarPrimerElemento().quantum*MULTY.mostrarPrimerElemento().mostrarPrimerElemento().contador+MULTY.mostrarPrimerElemento().mostrarPrimerElemento().rafagaOrg;
+                                        } 
                                         MULTY.mostrarPrimerElemento().mostrarPrimerElemento().comienzo = MULTY.mostrarPrimerElemento().mostrarPrimerElemento().tfinal-MULTY.mostrarPrimerElemento().mostrarPrimerElemento().rafagaOrg-MULTY.mostrarPrimerElemento().mostrarPrimerElemento().llegada-(MULTY.mostrarPrimerElemento().mostrarPrimerElemento().quantum*MULTY.mostrarPrimerElemento().mostrarPrimerElemento().contador);
+                                        
                                         if( MULTY.mostrarPrimerElemento().mostrarPrimerElemento().comienzo<0){
                                             MULTY.mostrarPrimerElemento().mostrarPrimerElemento().comienzo=0;
                                         }
                                         if(MULTY.mostrarPrimerElemento().mostrarPrimerElemento().contador>=1){
                                             MULTY.mostrarPrimerElemento().mostrarPrimerElemento().tfinal=MULTY.mostrarPrimerElemento().mostrarPrimerElemento().tfinal-1;
                                             MULTY.mostrarPrimerElemento().mostrarPrimerElemento().rafagaOrg = MULTY.mostrarPrimerElemento().mostrarPrimerElemento().quantum*MULTY.mostrarPrimerElemento().mostrarPrimerElemento().contador+MULTY.mostrarPrimerElemento().mostrarPrimerElemento().rafagaOrg;
-                                             MULTY.mostrarPrimerElemento().mostrarPrimerElemento().comienzo-=1;
+                                            MULTY.mostrarPrimerElemento().mostrarPrimerElemento().comienzo-=1;
                                         }
 					cT.añadirElemento(MULTY.mostrarPrimerElemento().mostrarPrimerElemento());
 					MULTY.mostrarPrimerElemento().removerPrimerElemento();
